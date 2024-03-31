@@ -3,14 +3,13 @@ import { useState } from "react";
 
 import Form from "./components/Form";
 import List from "./components/List";
+import { v4 as uuid } from "uuid";
 
 export default function App() {
   const [memos, setMemos] = useState([]);
-  const [nextId, setNextId] = useState(0);
 
   const addMemo = (content) => {
-    setMemos([...memos, { id: nextId, content: content }]);
-    setNextId(nextId + 1);
+    setMemos([...memos, { id: uuid(), content: content }]);
   };
 
   const deleteMemo = (id) => {
