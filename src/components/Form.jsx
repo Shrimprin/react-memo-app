@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-export default function Form({ addMemo }) {
+export default function Form({ addMemo, hideForm }) {
   const [content, setContent] = useState("");
 
   const handleChange = (event) => {
@@ -12,6 +12,7 @@ export default function Form({ addMemo }) {
     event.preventDefault();
     addMemo(content);
     setContent("");
+    hideForm();
   };
 
   return (
@@ -21,6 +22,7 @@ export default function Form({ addMemo }) {
         <input value={content} onChange={handleChange} />
         <input type="submit" value="Add Memo" />
       </form>
+      <button onClick={hideForm}>Cancel</button>
     </div>
   );
 }

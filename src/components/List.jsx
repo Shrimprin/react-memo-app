@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function List({ memos, deleteMemo }) {
+export default function List({ memos, deleteMemo, showForm }) {
   const list = memos.map((memo) => (
     <li key={memo.id}>
       {memo.id} - {memo.content}
@@ -12,6 +12,7 @@ export default function List({ memos, deleteMemo }) {
     <div>
       <h2>List</h2>
       {list}
+      <button onClick={showForm}>Create Memo</button>
     </div>
   );
 }

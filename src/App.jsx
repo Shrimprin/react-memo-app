@@ -7,6 +7,7 @@ import { v4 as uuid } from "uuid";
 
 export default function App() {
   const [memos, setMemos] = useState([]);
+  const [isFormActive, setIsFormActive] = useState(false);
 
   const addMemo = (content) => {
     setMemos([...memos, { id: uuid(), content: content }]);
@@ -17,11 +18,19 @@ export default function App() {
     setMemos(filteredArray);
   };
 
+  const showForm = () => {
+    setIsFormActive(true);
+  };
+
+  const hideForm = () => {
+    setIsFormActive(false);
+  };
+
   return (
     <div>
       <h2>React Memo App</h2>
-      <Form addMemo={addMemo} />
-      <List memos={memos} deleteMemo={deleteMemo} />
+      {isFormActive && <Form addMemo={addMemo} hideForm={hideForm} />}
+      <List memos={memos} deleteMemo={deleteMemo} showForm={showForm} />
     </div>
   );
 }
