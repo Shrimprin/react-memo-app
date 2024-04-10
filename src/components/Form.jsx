@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-export default function Form({ addMemo, hideForm }) {
+export default function Form({ memo, updateMemo, deleteMemo, hideForm }) {
   const [content, setContent] = useState("");
 
   const handleChange = (event) => {
@@ -10,7 +10,9 @@ export default function Form({ addMemo, hideForm }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    addMemo(content);
+    console.log(content);
+    const updatedMemo = { id: memo.id, content: content };
+    updateMemo(updatedMemo);
     setContent("");
     hideForm();
   };
@@ -20,9 +22,10 @@ export default function Form({ addMemo, hideForm }) {
       <h2>Form</h2>
       <form onSubmit={handleSubmit}>
         <input value={content} onChange={handleChange} />
-        <input type="submit" value="Add Memo" />
+        <input type="submit" value="Save Memo" />
       </form>
       <button onClick={hideForm}>Cancel</button>
+      <button onClick={() => deleteMemo(memo.id)}>delete</button>
     </div>
   );
 }
