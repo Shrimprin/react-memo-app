@@ -29,8 +29,6 @@ export default function App() {
     setMemos(updatedMemos);
   };
 
-  const showMemo = (memo) => {};
-
   const deleteMemo = (id) => {
     const filteredArray = memos.filter((memo) => memo.id !== id);
     setMemos(filteredArray);
