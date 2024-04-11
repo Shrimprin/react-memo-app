@@ -1,8 +1,12 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Form({ memo, updateMemo, deleteMemo, hideForm }) {
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState(memo.content);
+
+  // 編集するメモが変わったら、フォームに表示する内容を編集中のメモの内容に変更
+  useEffect(() => {
+    setContent(memo.content);
+  }, [memo]);
 
   const handleChange = (event) => {
     setContent(event.target.value);
@@ -10,10 +14,15 @@ export default function Form({ memo, updateMemo, deleteMemo, hideForm }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(content);
+    if (!content.trim()) return;
     const updatedMemo = { id: memo.id, content: content };
     updateMemo(updatedMemo);
     setContent("");
+    hideForm();
+  };
+
+  const handleDelete = () => {
+    deleteMemo(memo.id);
     hideForm();
   };
 
@@ -21,11 +30,10 @@ export default function Form({ memo, updateMemo, deleteMemo, hideForm }) {
     <div>
       <h2>Form</h2>
       <form onSubmit={handleSubmit}>
-        <input value={content} onChange={handleChange} />
+        <textarea value={content} onChange={handleChange} rows="4" cols="50" />
         <input type="submit" value="Save Memo" />
       </form>
-      <button onClick={hideForm}>Cancel</button>
-      <button onClick={() => deleteMemo(memo.id)}>delete</button>
+      <button onClick={() => handleDelete(memo.id)}>delete</button>
     </div>
   );
 }

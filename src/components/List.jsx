@@ -1,9 +1,16 @@
 import React from "react";
 
 export default function List({ memos, createMemo, setEditingMemo, showForm }) {
+  const editMemo = (memo) => {
+    setEditingMemo(memo);
+    showForm();
+  };
+
   const list = memos.map((memo) => (
     <li key={memo.id}>
-      {memo.id} - {memo.content}
+      <span onClick={() => editMemo(memo)}>
+        {memo.content ? memo.content.split("\n")[0] : ""}
+      </span>
     </li>
   ));
 
