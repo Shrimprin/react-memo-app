@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const ListContainer = styled.div`
   padding: 20px;
-  width: 30%;
+  flex: 0.3;
 `;
 
 const ListItem = styled.div`

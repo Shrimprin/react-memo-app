@@ -4,7 +4,7 @@ import styled from "styled-components";
 const FormContainer = styled.div`
   padding: 20px;
   border-left: 1px solid lightgray;
-  width: 70%;
+  flex: 0.7;
 `;
 
 const StyledTextArea = styled.textarea`
