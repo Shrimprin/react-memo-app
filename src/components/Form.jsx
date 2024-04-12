@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
+import { StyledButton } from "./StyledButton";
+
 const FormContainer = styled.div`
   padding: 20px;
   border-left: 1px solid lightgray;
@@ -14,21 +16,6 @@ const StyledTextArea = styled.textarea`
   border: 1px solid lightgray;
   border-radius: 4px;
   resize: none;
-`;
-
-const StyledButton = styled.button`
-  padding: 10px 20px;
-  margin-right: 10px;
-  background-color: white;
-  color: black;
-  border: 1px solid black;
-  border-radius: 5px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: black;
-    color: white;
-  }
 `;
 
 const ButtonsContainer = styled.div`

@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { StyledButton } from "./StyledButton";
+
 const ListContainer = styled.div`
   padding: 20px;
   flex: 0.3;
@@ -29,23 +31,6 @@ const EditingListItem = styled(ListItem)`
   }
   &:hover {
     text-decoration: none;
-  }
-`;
-
-const AddButton = styled.button`
-  display: block;
-  width: 30%;
-  padding: 10px 0;
-  margin: 20px 0 0 40px;
-  background-color: white;
-  color: black;
-  border: 1px solid black;
-  border-radius: 5px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: black;
-    color: white;
   }
 `;
 
@@ -85,7 +70,7 @@ export default function List({
   return (
     <ListContainer>
       <ul>{listItems}</ul>
-      <AddButton onClick={newMemo}>+</AddButton>
+      <StyledButton onClick={newMemo}>+</StyledButton>
     </ListContainer>
   );
 }
