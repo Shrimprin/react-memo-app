@@ -7,8 +7,15 @@ import List from "./components/List";
 
 const AppContainer = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   margin-top: 50px;
+`;
+
+const Title = styled.h3`
+  align-self: flex-start;
+  margin-left: 10%;
+  margin-bottom: 20px;
 `;
 
 const Card = styled.div`
@@ -59,6 +66,7 @@ export default function App() {
 
   return (
     <AppContainer>
+      <Title>React Memo App</Title>
       <Card>
         <List
           memos={memos}
