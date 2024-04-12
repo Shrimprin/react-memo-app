@@ -1,6 +1,48 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 
-export default function Form({ memo, updateMemo, deleteMemo, hideForm }) {
+const FormContainer = styled.div`
+  padding: 20px;
+  border-left: 1px solid lightgray;
+  width: 70%;
+`;
+
+const StyledTextArea = styled.textarea`
+  width: calc(100% - 20px);
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  resize: none;
+`;
+
+const StyledButton = styled.button`
+  padding: 10px 20px;
+  margin-right: 10px;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: black;
+    color: white;
+  }
+`;
+
+const ButtonsContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+export default function Form({
+  memo,
+  updateMemo,
+  deleteMemo,
+  setEditingMemo,
+  hideForm,
+}) {
   const [content, setContent] = useState(memo.content);
 
   // 編集するメモが変わったら、フォームに表示する内容を編集中のメモの内容に変更
@@ -18,6 +60,7 @@ export default function Form({ memo, updateMemo, deleteMemo, hideForm }) {
     const updatedMemo = { id: memo.id, content: content };
     updateMemo(updatedMemo);
     setContent("");
+    setEditingMemo(null);
     hideForm();
   };
 
@@ -27,13 +70,16 @@ export default function Form({ memo, updateMemo, deleteMemo, hideForm }) {
   };
 
   return (
-    <div>
-      <h2>Form</h2>
+    <FormContainer>
       <form onSubmit={handleSubmit}>
-        <textarea value={content} onChange={handleChange} rows="4" cols="50" />
-        <input type="submit" value="Save Memo" />
+        <StyledTextArea value={content} onChange={handleChange} rows="8" />
+        <ButtonsContainer>
+          <StyledButton type="submit">保存</StyledButton>
+          <StyledButton onClick={() => handleDelete(memo.id)}>
+            削除
+          </StyledButton>
+        </ButtonsContainer>
       </form>
-      <button onClick={() => handleDelete(memo.id)}>delete</button>
-    </div>
+    </FormContainer>
   );
 }

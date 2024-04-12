@@ -1,8 +1,23 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import { v4 as uuid } from "uuid";
 
 import Form from "./components/Form";
 import List from "./components/List";
-import { v4 as uuid } from "uuid";
+
+const AppContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+`;
+
+const Card = styled.div`
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  display: flex;
+  width: 80%;
+`;
 
 export default function App() {
   const [memos, setMemos] = useState(
@@ -43,22 +58,25 @@ export default function App() {
   };
 
   return (
-    <div>
-      <h2>React Memo App</h2>
-      {isFormActive && (
-        <Form
-          memo={editingMemo}
-          updateMemo={updateMemo}
-          deleteMemo={deleteMemo}
-          hideForm={hideForm}
+    <AppContainer>
+      <Card>
+        <List
+          memos={memos}
+          createMemo={createMemo}
+          setEditingMemo={setEditingMemo}
+          showForm={showForm}
+          editingMemo={editingMemo}
         />
-      )}
-      <List
-        memos={memos}
-        createMemo={createMemo}
-        setEditingMemo={setEditingMemo}
-        showForm={showForm}
-      />
-    </div>
+        {isFormActive && (
+          <Form
+            memo={editingMemo}
+            updateMemo={updateMemo}
+            deleteMemo={deleteMemo}
+            setEditingMemo={setEditingMemo}
+            hideForm={hideForm}
+          />
+        )}
+      </Card>
+    </AppContainer>
   );
 }
