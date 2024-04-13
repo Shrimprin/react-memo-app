@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import { v4 as uuid } from "uuid";
 
@@ -37,24 +37,30 @@ export default function App() {
     localStorage.setItem("memos", JSON.stringify(memos));
   }, [memos]);
 
-  const createMemo = () => {
+  const createMemo = useCallback(() => {
     const newMemo = { id: uuid(), content: "新規メモ" };
     const updatedMemos = [...memos, newMemo];
     setMemos(updatedMemos);
     return newMemo;
-  };
+  }, [memos]);
 
-  const updateMemo = (updatedMemo) => {
-    const updatedMemos = memos.map((memo) =>
-      memo.id === updatedMemo.id ? updatedMemo : memo
-    );
-    setMemos(updatedMemos);
-  };
+  const updateMemo = useCallback(
+    (updatedMemo) => {
+      const updatedMemos = memos.map((memo) =>
+        memo.id === updatedMemo.id ? updatedMemo : memo
+      );
+      setMemos(updatedMemos);
+    },
+    [memos]
+  );
 
-  const deleteMemo = (id) => {
-    const filteredArray = memos.filter((memo) => memo.id !== id);
-    setMemos(filteredArray);
-  };
+  const deleteMemo = useCallback(
+    (id) => {
+      const filteredArray = memos.filter((memo) => memo.id !== id);
+      setMemos(filteredArray);
+    },
+    [memos]
+  );
 
   const showForm = () => {
     setIsFormActive(true);

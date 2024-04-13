@@ -34,13 +34,7 @@ const EditingListItem = styled(ListItem)`
   }
 `;
 
-export default function List({
-  memos,
-  createMemo,
-  setEditingMemo,
-  showForm,
-  editingMemo,
-}) {
+const List = ({ memos, createMemo, setEditingMemo, showForm, editingMemo }) => {
   const editMemo = (memo) => {
     setEditingMemo(memo);
     showForm();
@@ -73,4 +67,6 @@ export default function List({
       <StyledButton onClick={newMemo}>+</StyledButton>
     </ListContainer>
   );
-}
+};
+
+export default React.memo(List);

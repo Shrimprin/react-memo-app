@@ -23,13 +23,7 @@ const ButtonsContainer = styled.div`
   justify-content: flex-end;
 `;
 
-export default function Form({
-  memo,
-  updateMemo,
-  deleteMemo,
-  setEditingMemo,
-  hideForm,
-}) {
+const Form = ({ memo, updateMemo, deleteMemo, setEditingMemo, hideForm }) => {
   const [content, setContent] = useState(memo.content);
 
   // 編集するメモが変わったら、フォームに表示する内容を編集中のメモの内容に変更
@@ -69,4 +63,6 @@ export default function Form({
       </form>
     </FormContainer>
   );
-}
+};
+
+export default React.memo(Form);
