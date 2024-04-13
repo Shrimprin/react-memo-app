@@ -1,8 +1,10 @@
 # React Memo App
+
 ブラウザ上でメモを作成できるアプリケーションです。
 
 ## インストール方法
-``` bash
+
+```bash
 # リポジトリをローカルにクローン
 $ git clone https://github.com/Shrimprin/react-memo-app
 
@@ -14,8 +16,11 @@ $ npm install
 ```
 
 ## 使い方
-`react-memo-app`ディレクトリで以下を実行
-``` bash
+
+1. `react-memo-app`ディレクトリで以下を実行
+
+```bash
 $ npm start
 ```
 
+2. [http://localhost:3000/](http://localhost:3000/)にアクセス

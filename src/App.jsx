@@ -28,7 +28,7 @@ const Card = styled.div`
 
 export default function App() {
   const [memos, setMemos] = useState(
-    JSON.parse(localStorage.getItem("memos")) || []
+    JSON.parse(localStorage.getItem("memos")) || [],
   );
   const [isFormActive, setIsFormActive] = useState(false);
   const [editingMemo, setEditingMemo] = useState(null);
@@ -47,11 +47,11 @@ export default function App() {
   const updateMemo = useCallback(
     (updatedMemo) => {
       const updatedMemos = memos.map((memo) =>
-        memo.id === updatedMemo.id ? updatedMemo : memo
+        memo.id === updatedMemo.id ? updatedMemo : memo,
       );
       setMemos(updatedMemos);
     },
-    [memos]
+    [memos],
   );
 
   const deleteMemo = useCallback(
@@ -59,7 +59,7 @@ export default function App() {
       const filteredArray = memos.filter((memo) => memo.id !== id);
       setMemos(filteredArray);
     },
-    [memos]
+    [memos],
   );
 
   const showForm = () => {
