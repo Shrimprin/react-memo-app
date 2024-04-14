@@ -45,11 +45,7 @@ const List = ({ memos, createMemo, setEditingMemo, showForm, editingMemo }) => {
     const MemoComponent = isEditing ? EditingListItem : ListItem;
 
     return (
-      <MemoComponent
-        key={memo.id}
-        onClick={() => editMemo(memo)}
-        isEditing={isEditing}
-      >
+      <MemoComponent key={memo.id} onClick={() => editMemo(memo)}>
         {memo.content ? memo.content.split("\n")[0] : ""}
       </MemoComponent>
     );
