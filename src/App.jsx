@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { v4 as uuid } from "uuid";
 
 import Form from "./components/Form";
 import List from "./components/List";
+import useMemos from "./hooks/useMemos";
 
 const AppContainer = styled.div`
   display: flex;
@@ -27,40 +27,9 @@ const Card = styled.div`
 `;
 
 export default function App() {
-  const [memos, setMemos] = useState(
-    JSON.parse(localStorage.getItem("memos")) || [],
-  );
+  const { memos, createMemo, updateMemo, deleteMemo } = useMemos();
   const [isFormActive, setIsFormActive] = useState(false);
   const [editingMemo, setEditingMemo] = useState(null);
-
-  useEffect(() => {
-    localStorage.setItem("memos", JSON.stringify(memos));
-  }, [memos]);
-
-  const createMemo = useCallback(() => {
-    const newMemo = { id: uuid(), content: "新規メモ" };
-    const updatedMemos = [...memos, newMemo];
-    setMemos(updatedMemos);
-    return newMemo;
-  }, [memos]);
-
-  const updateMemo = useCallback(
-    (updatedMemo) => {
-      const updatedMemos = memos.map((memo) =>
-        memo.id === updatedMemo.id ? updatedMemo : memo,
-      );
-      setMemos(updatedMemos);
-    },
-    [memos],
-  );
-
-  const deleteMemo = useCallback(
-    (id) => {
-      const filteredArray = memos.filter((memo) => memo.id !== id);
-      setMemos(filteredArray);
-    },
-    [memos],
-  );
 
   const showForm = () => {
     setIsFormActive(true);
