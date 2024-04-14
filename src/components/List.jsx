@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import { StyledButton } from "./StyledButton";
-import { LoginContext } from "./LoginProvider";
+import { useLogin } from "../hooks/useLogin";
 
 const ListContainer = styled.div`
   padding: 20px;
@@ -41,8 +41,7 @@ const List = ({ memos, createMemo, setEditingMemo, showForm, editingMemo }) => {
     showForm();
   };
 
-  const [isLogin] = useContext(LoginContext);
-
+  const { isLogin } = useLogin();
   const listItems = memos.map((memo) => {
     const isEditing = editingMemo && editingMemo.id === memo.id;
     const MemoComponent = isEditing ? EditingListItem : ListItem;

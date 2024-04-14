@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import { StyledButton } from "./StyledButton";
-import { LoginContext } from "./LoginProvider";
+import { useLogin } from "../hooks/useLogin";
 
-const LoginButton = () => {
-  const [isLogin, setIsLogin] = useContext(LoginContext);
+export default function LoginButton() {
+  const { isLogin, setIsLogin } = useLogin();
 
   const handleClick = () => {
     setIsLogin(!isLogin);
@@ -14,6 +14,4 @@ const LoginButton = () => {
       {isLogin ? "ログアウト" : "ログイン"}
     </StyledButton>
   );
-};
-
-export default React.memo(LoginButton);
+}

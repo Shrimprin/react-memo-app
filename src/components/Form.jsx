@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import { StyledButton } from "./StyledButton";
-import { LoginContext } from "./LoginProvider";
+import { useLogin } from "../hooks/useLogin";
 
 const FormContainer = styled.div`
   padding: 20px;
@@ -26,7 +26,7 @@ const ButtonsContainer = styled.div`
 
 const Form = ({ memo, updateMemo, deleteMemo, setEditingMemo, hideForm }) => {
   const [content, setContent] = useState(memo.content);
-  const [isLogin] = useContext(LoginContext);
+  const { isLogin } = useLogin();
 
   // 編集するメモが変わったら、フォームに表示する内容を編集中のメモの内容に変更
   useEffect(() => {

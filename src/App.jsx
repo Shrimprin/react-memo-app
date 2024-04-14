@@ -5,7 +5,7 @@ import Form from "./components/Form";
 import List from "./components/List";
 import LoginButton from "./components/LoginButton";
 import useMemos from "./hooks/useMemos";
-import { LoginProvider } from "./components/LoginProvider";
+import { LoginProvider } from "./hooks/useLogin";
 
 const AppContainer = styled.div`
   display: flex;
