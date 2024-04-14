@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 
 import { StyledButton } from "./StyledButton";
+import { LoginContext } from "./LoginProvider";
 
 const FormContainer = styled.div`
   padding: 20px;
@@ -25,6 +26,7 @@ const ButtonsContainer = styled.div`
 
 const Form = ({ memo, updateMemo, deleteMemo, setEditingMemo, hideForm }) => {
   const [content, setContent] = useState(memo.content);
+  const [isLogin] = useContext(LoginContext);
 
   // 編集するメモが変わったら、フォームに表示する内容を編集中のメモの内容に変更
   useEffect(() => {
@@ -32,7 +34,7 @@ const Form = ({ memo, updateMemo, deleteMemo, setEditingMemo, hideForm }) => {
   }, [memo]);
 
   const handleChange = (event) => {
-    setContent(event.target.value);
+    isLogin && setContent(event.target.value);
   };
 
   const handleSubmit = (event) => {
@@ -54,12 +56,14 @@ const Form = ({ memo, updateMemo, deleteMemo, setEditingMemo, hideForm }) => {
     <FormContainer>
       <form onSubmit={handleSubmit}>
         <StyledTextArea value={content} onChange={handleChange} rows="8" />
-        <ButtonsContainer>
-          <StyledButton type="submit">保存</StyledButton>
-          <StyledButton onClick={() => handleDelete(memo.id)}>
-            削除
-          </StyledButton>
-        </ButtonsContainer>
+        {isLogin && (
+          <ButtonsContainer>
+            <StyledButton type="submit">保存</StyledButton>
+            <StyledButton onClick={() => handleDelete(memo.id)}>
+              削除
+            </StyledButton>
+          </ButtonsContainer>
+        )}
       </form>
     </FormContainer>
   );

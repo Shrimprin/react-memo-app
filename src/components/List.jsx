@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 
 import { StyledButton } from "./StyledButton";
+import { LoginContext } from "./LoginProvider";
 
 const ListContainer = styled.div`
   padding: 20px;
@@ -40,6 +41,8 @@ const List = ({ memos, createMemo, setEditingMemo, showForm, editingMemo }) => {
     showForm();
   };
 
+  const [isLogin] = useContext(LoginContext);
+
   const listItems = memos.map((memo) => {
     const isEditing = editingMemo && editingMemo.id === memo.id;
     const MemoComponent = isEditing ? EditingListItem : ListItem;
@@ -60,7 +63,7 @@ const List = ({ memos, createMemo, setEditingMemo, showForm, editingMemo }) => {
   return (
     <ListContainer>
       <ul>{listItems}</ul>
-      <StyledButton onClick={newMemo}>+</StyledButton>
+      {isLogin && <StyledButton onClick={newMemo}>+</StyledButton>}
     </ListContainer>
   );
 };

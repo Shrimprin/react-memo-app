@@ -3,13 +3,22 @@ import styled from "styled-components";
 
 import Form from "./components/Form";
 import List from "./components/List";
+import LoginButton from "./components/LoginButton";
 import useMemos from "./hooks/useMemos";
+import { LoginProvider } from "./components/LoginProvider";
 
 const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
+`;
+
+const LoginButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 80%;
+  margin-bottom: 10px;
 `;
 
 const Title = styled.h3`
@@ -40,26 +49,31 @@ export default function App() {
   };
 
   return (
-    <AppContainer>
-      <Title>React Memo App</Title>
-      <Card>
-        <List
-          memos={memos}
-          createMemo={createMemo}
-          setEditingMemo={setEditingMemo}
-          showForm={showForm}
-          editingMemo={editingMemo}
-        />
-        {isFormActive && (
-          <Form
-            memo={editingMemo}
-            updateMemo={updateMemo}
-            deleteMemo={deleteMemo}
+    <LoginProvider>
+      <AppContainer>
+        <Title>React Memo App</Title>
+        <LoginButtonContainer>
+          <LoginButton></LoginButton>
+        </LoginButtonContainer>
+        <Card>
+          <List
+            memos={memos}
+            createMemo={createMemo}
             setEditingMemo={setEditingMemo}
-            hideForm={hideForm}
+            showForm={showForm}
+            editingMemo={editingMemo}
           />
-        )}
-      </Card>
-    </AppContainer>
+          {isFormActive && (
+            <Form
+              memo={editingMemo}
+              updateMemo={updateMemo}
+              deleteMemo={deleteMemo}
+              setEditingMemo={setEditingMemo}
+              hideForm={hideForm}
+            />
+          )}
+        </Card>
+      </AppContainer>
+    </LoginProvider>
   );
 }
