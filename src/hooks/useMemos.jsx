@@ -15,18 +15,18 @@ export default function useMemos() {
     (updatedMemo) => {
       setMemos((prevMemos) =>
         prevMemos.map((memo) =>
-          memo.id === updatedMemo.id ? updatedMemo : memo
-        )
+          memo.id === updatedMemo.id ? updatedMemo : memo,
+        ),
       );
     },
-    [setMemos]
+    [setMemos],
   );
 
   const deleteMemo = useCallback(
     (id) => {
       setMemos((prevMemos) => prevMemos.filter((memo) => memo.id !== id));
     },
-    [setMemos]
+    [setMemos],
   );
 
   return { memos, createMemo, updateMemo, deleteMemo };
