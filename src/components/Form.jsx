@@ -40,7 +40,7 @@ const Form = ({ memo, updateMemo, deleteMemo, setEditingMemo, hideForm }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!content.trim()) return;
-    const updatedMemo = { id: memo.id, content: content };
+    const updatedMemo = { id: memo.id, content };
     updateMemo(updatedMemo);
     setContent("");
     setEditingMemo(null);

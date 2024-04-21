@@ -43,7 +43,7 @@ const List = ({ memos, createMemo, setEditingMemo, showForm, editingMemo }) => {
 
   const { isLogin } = useLogin();
   const listItems = memos.map((memo) => {
-    const isEditing = editingMemo && editingMemo.id === memo.id;
+    const isEditing = editingMemo?.id === memo.id;
     const MemoComponent = isEditing ? EditingListItem : ListItem;
 
     return (
