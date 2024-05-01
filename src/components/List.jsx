@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { StyledButton } from "./StyledButton";
 import { useLogin } from "../hooks/useLogin";
 
-const ListContainer = styled.div`
+const ListWrapper = styled.div`
   padding: 20px;
   flex: 0.3;
 `;
@@ -60,10 +60,10 @@ const List = ({ memos, createMemo, setEditingMemo, showForm, editingMemo }) => {
   };
 
   return (
-    <ListContainer>
+    <ListWrapper>
       <ul>{listItems}</ul>
       {isLogin && <StyledButton onClick={newMemo}>+</StyledButton>}
-    </ListContainer>
+    </ListWrapper>
   );
 };
 

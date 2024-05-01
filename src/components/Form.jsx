@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { StyledButton } from "./StyledButton";
 import { useLogin } from "../hooks/useLogin";
 
-const FormContainer = styled.div`
+const FormWrapper = styled.div`
   padding: 20px;
   border-left: 1px solid lightgray;
   flex: 0.7;
@@ -19,7 +19,7 @@ const StyledTextArea = styled.textarea`
   resize: none;
 `;
 
-const ButtonsContainer = styled.div`
+const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
@@ -53,19 +53,19 @@ const Form = ({ memo, updateMemo, deleteMemo, setEditingMemo, hideForm }) => {
   };
 
   return (
-    <FormContainer>
+    <FormWrapper>
       <form onSubmit={handleSubmit}>
         <StyledTextArea value={content} onChange={handleChange} rows="8" />
         {isLogin && (
-          <ButtonsContainer>
+          <ButtonsWrapper>
             <StyledButton type="submit">保存</StyledButton>
             <StyledButton onClick={() => handleDelete(memo.id)}>
               削除
             </StyledButton>
-          </ButtonsContainer>
+          </ButtonsWrapper>
         )}
       </form>
-    </FormContainer>
+    </FormWrapper>
   );
 };
 
