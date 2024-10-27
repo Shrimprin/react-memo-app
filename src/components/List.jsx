@@ -2,8 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 import { StyledButton } from "./StyledButton";
+import { useLogin } from "../hooks/useLogin";
 
-const ListContainer = styled.div`
+const ListWrapper = styled.div`
   padding: 20px;
   flex: 0.3;
 `;
@@ -40,6 +41,7 @@ const List = ({ memos, createMemo, setEditingMemo, showForm, editingMemo }) => {
     showForm();
   };
 
+  const { isLogin } = useLogin();
   const listItems = memos.map((memo) => {
     const isEditing = editingMemo?.id === memo.id;
     const MemoComponent = isEditing ? EditingListItem : ListItem;
@@ -58,10 +60,10 @@ const List = ({ memos, createMemo, setEditingMemo, showForm, editingMemo }) => {
   };
 
   return (
-    <ListContainer>
+    <ListWrapper>
       <ul>{listItems}</ul>
-      <StyledButton onClick={newMemo}>+</StyledButton>
-    </ListContainer>
+      {isLogin && <StyledButton onClick={newMemo}>+</StyledButton>}
+    </ListWrapper>
   );
 };
 
